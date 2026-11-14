@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123e32">
+  <meta name="description" content="لوحة مشاريع عبدالعزيز العمري">
+  <title>مشاريعي | عبدالعزيز العمري</title>
+
+  <style>
+    :root {
+      --green: #123e32;
+      --dark: #09291f;
+      --gold: #c4a66a;
+      --paper: #f6f3eb;
+      --ink: #193c32;
+      --muted: #69776e;
+      --border: #dedfd4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.8;
+    }
+
+    [hidden] { display: none !important; }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    button:focus-visible,
+    input:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    .wrap {
+      width: min(1120px, 100%);
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      background: var(--green);
+      color: var(--gold);
+      font-size: 25px;
+    }
+
+    .primary, .secondary {
+      border-radius: 10px;
+      padding: 11px 20px;
+    }
+
+    .primary {
+      background: var(--green);
+      border: 1px solid var(--green);
+      color: white;
+    }
+
+    .secondary {
+      background: transparent;
+      border: 1px solid #c7cec3;
+      color: var(--green);
+    }
+
+    .muted { color: var(--muted); }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      background: white;
+      color: var(--ink);
+      border: 1px solid #c9cfc5;
+      border-radius: 10px;
+    }
+
+    .notice {
+      background: #eee7d6;
+      border: 1px solid #d9cba7;
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 12px;
+    }
+
+    .error {
+      color: #a22d23;
+      font-size: 13px;
+      min-height: 24px;
+      margin: 8px 0;
+    }
+
+    /* شاشة الدخول */
+    .gate {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at top right, #28604a, transparent 65%),
+        var(--dark);
+    }
+
+    .login-card {
+      width: min(450px, 100%);
+      background: var(--paper);
+      border: 1px solid #c4a66a88;
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: 0 25px 90px #0003;
+    }
+
+    .login-card h1 {
+      margin: 24px 0 6px;
+      font-size: 28px;
+    }
+
+    .login-card .primary {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    /* رأس الصفحة */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 22px;
+      padding-bottom: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand strong { display: block; }
+    .brand small { color: var(--muted); font-size: 12px; }
+
+    /* الواجهة الرئيسية */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--green);
+      color: white;
+      padding: 52px 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      top: -140px;
+      left: -90px;
+      border: 1px solid #c4a66a66;
+      transform: rotate(45deg);
+      box-shadow: 0 0 0 35px #c4a66a0d, 0 0 0 70px #c4a66a09;
+      pointer-events: none;
+    }
+
+    .hero .wrap { position: relative; z-index: 1; }
+
+    .eyebrow {
+      color: #dbc391;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: block;
+      width: 45px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(29px, 5vw, 46px);
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #d1dfd7;
+      max-width: 580px;
+      margin-bottom: 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin: 35px 0 22px;
+    }
+
+    .section-head h2 { margin: 0; font-size: 23px; }
+    .section-head p { margin: 3px 0 0; font-size: 13px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-height: 295px;
+      padding: 26px;
+      background: #fffefa;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px #123e3210;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #edf1e8;
+      border: 1px solid #dfe5d5;
+      font-size: 23px;
+    }
+
+    .badge {
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: #eaf2e8;
+      color: #376242;
+      font-size: 11px;
+    }
+
+    .pending { background: #f0eee7; color: #787666; }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 21px;
+      overflow-wrap: anywhere;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+      overflow-wrap: anywhere;
+    }
+
+    .project-link, .unavailable {
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid #e8e8df;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .project-link { color: var(--green); font-weight: bold; }
+    .unavailable { color: #858d82; }
+
+    .add-form {
+      background: #fffefa;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 22px;
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 20px;
+    }
+
+    .full { grid-column: 1 / -1; }
+    .actions { display: flex; gap: 12px; margin-top: 18px; }
+    .small { font-size: 12px; }
+    .status { font-size: 13px; }
+    .bottom-note { margin: 25px 0; }
+
+    footer {
+      margin-top: 35px;
+      padding: 22px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { padding-left: 18px; padding-right: 18px; }
+      .grid, .fields { grid-template-columns: 1fr; }
+      .login-card { padding: 26px; }
+      .brand strong { font-size: 15px; }
+      .brand small { font-size: 10px; }
+      .brand .logo { width: 42px; height: 42px; }
+      .header .secondary { padding: 8px 12px; font-size: 12px; }
+      .section-head { align-items: flex-start; }
+      .section-head .primary {
+        padding: 10px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .section-head h2 { font-size: 20px; }
+      .hero { padding: 38px 0; }
+      .footer-inner { flex-direction: column; gap: 3px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <section id="gate" class="gate" aria-labelledby="login-title">
+    <div class="login-card">
+      <div class="logo" aria-hidden="true">ع</div>
+      <h1 id="login-title">أهلًا، عبدالعزيز.</h1>
+      <p class="muted">مساحة واحدة، لكل مشاريعك.</p>
+
+      <form id="login-form">
+        <label for="code">رمز الدخول</label>
+        <input
+          id="code"
+          type="password"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="أدخل الرمز"
+          aria-describedby="login-error security-note"
+          dir="ltr"
+          required
+        >
+        <p id="login-error" class="error" role="alert"></p>
+        <button class="primary" type="submit">
+          الدخول إلى مشاريعي ←
+        </button>
+      </form>
+
+      <p id="security-note" class="notice">
+        <strong>حجب شكلي فقط — غير آمن.</strong>
+        الرمز موجود داخل الملف ويمكن تجاوزه.
+        هذه الشاشة لا تحمي الروابط أو البيانات ولا تصلح لحفظ معلومات حساسة.
+      </p>
+
+      <noscript>
+        <p class="error">فعّل JavaScript لتشغيل اللوحة.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <div id="dashboard" hidden>
+    <header class="wrap header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">ع</div>
+        <div>
+          <strong>مشاريعي</strong>
+          <small>عبدالعزيز العمري</small>
+        </div>
+      </div>
+      <button id="logout" class="secondary" type="button">
+        تسجيل الخروج
+      </button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap">
+          <div class="eyebrow">مساحة عبدالعزيز الرقمية</div>
+          <h1>أفكار تنمو.<br>ومشاريع تجمعها وجهة واحدة.</h1>
+          <p>
+            أدواتي ومشاريعي في متناول يدي،
+            بترتيب يفتح مساحة للإنجاز.
+          </p>
+        </div>
+      </section>
+
+      <section class="wrap" aria-labelledby="projects-title">
+        <div class="section-head">
+          <div>
+            <h2 id="projects-title">مشاريعي وأدواتي</h2>
+            <p class="muted">كل مشروع، خطوة إلى الأمام.</p>
+          </div>
+          <button
+            id="show-add"
+            class="primary"
+            type="button"
+            aria-expanded="false"
+            aria-controls="add-form"
+          >
+            ＋ إضافة مشروع
+          </button>
+        </div>
+
+        <form id="add-form" class="add-form" hidden>
+          <h3>مساحة لمشروع جديد</h3>
+
+          <div class="fields">
+            <div>
+              <label for="project-name">اسم المشروع</label>
+              <input id="project-name" maxlength="70" required>
+            </div>
+
+            <div>
+              <label for="project-url">الرابط (اختياري)</label>
+              <input
+                id="project-url"
+                type="url"
+                placeholder="https://"
+                dir="ltr"
+              >
+            </div>
+
+            <div class="full">
+              <label for="project-description">وصف قصير</label>
+              <input id="project-description" maxlength="180">
+            </div>
+          </div>
+
+          <p class="small muted">
+            تُحفظ الإضافات في هذا المتصفح فقط، وقد تُفقد عند مسح بياناته.
+            لإظهار المشروع لجميع الزوار، أضفه إلى قائمة projects داخل الملف.
+          </p>
+
+          <div class="actions">
+            <button class="primary" type="submit">حفظ المشروع</button>
+            <button id="cancel-add" class="secondary" type="button">
+              إلغاء
+            </button>
+          </div>
+
+          <p id="add-error" class="error" role="alert"></p>
+        </form>
+
+        <p id="status" class="status" role="status"></p>
+        <div id="projects" class="grid"></div>
+
+        <p class="bottom-note small muted">
+          مساحة قابلة للنمو؛ أضف مشروعك القادم متى ما أصبح جاهزًا.
+        </p>
+
+        <p class="notice">
+          تنبيه: الدخول برمز حجب شكلي في المتصفح وليس حماية أمنية.
+          الروابط والمحتوى متاحة لمن يفحص الملف.
+          لا تضع بيانات حساسة في هذه الصفحة.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap footer-inner">
+        <span>مشاريعي | عبدالعزيز العمري</span>
+        <span>بروح سعودية · وطموح يتجدد</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    "use strict";
+
+    // الرمز مكشوف داخل الملف: هذا حجب شكلي وليس حماية أمنية.
+    const ACCESS_CODE = "1407";
+
+    // أضف المشاريع هنا لإظهارها لجميع الزوار.
+    // ضع الرابط بين علامتي الاقتباس، أو اتركه فارغًا.
+    const projects = [
+      {
+        name: "مستنداتي",
+        description: "وجهتك للوصول إلى مشروع مستنداتي.",
+        url: "https://arssar16-rgb.github.io/mostanadati.gemini/",
+        icon: "▤"
+      },
+      {
+        name: "حاسبة التمويل",
+        description: "مكان مخصص لحاسبة التمويل. أضف رابط المشروع عند توفره.",
+        url: "",
+        icon: "∑"
+      },
+      {
+        name: "خزنة المعاملات",
+        description: "مكان مخصص لخزنة المعاملات. أضف رابط المشروع عند توفره.",
+        url: "",
+        icon: "▣"
+      }
+    ];
+
+    const $ = id => document.getElementById(id);
+    const STORAGE_KEY = "aziz-projects-v1";
+    let additions = [];
+
+    function safeUrl(value) {
+      try {
+        const url = new URL(value);
+        return ["https:", "http:"].includes(url.protocol)
+          ? url.href
+          : "";
+      } catch {
+        return "";
+      }
+    }
+
+    // قراءة المشاريع المحفوظة محليًا إن كان التخزين متاحًا.
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem(STORAGE_KEY) || "[]"
+      );
+
+      if (Array.isArray(saved)) {
+        additions = saved
+          .filter(project =>
+            project &&
+            typeof project.name === "string" &&
+            typeof project.description === "string" &&
+            typeof project.url === "string"
+          )
+          .map(project => ({
+            name: project.name.slice(0, 70),
+            description: project.description.slice(0, 180),
+            url: safeUrl(project.url),
+            icon: "◇"
+          }));
+      }
+    } catch {
+      additions = [];
+    }
+
+    function makeElement(tag, className, text) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      if (text) element.textContent = text;
+      return element;
+    }
+
+    function renderProjects() {
+      $("projects").replaceChildren();
+
+      [...projects, ...additions].forEach(project => {
+        const url = safeUrl(project.url);
+        const card = makeElement("article", "card");
+        const top = makeElement("div", "card-top");
+        const icon = makeElement("span", "icon", project.icon);
+
+        icon.setAttribute("aria-hidden", "true");
+
+        const badge = makeElement(
+          "span",
+          url ? "badge" : "badge pending",
+          url ? "متاح الآن" : "لم يُضف الرابط"
+        );
+
+        top.append(icon, badge);
+
+        card.append(
+          top,
+          makeElement("h3", "", project.name),
+          makeElement("p", "", project.description)
+        );
+
+        if (url) {
+          const link = makeElement(
+            "a", "project-link", "فتح المشروع"
+          );
+
+          link.href = url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.setAttribute(
+            "aria-label",
+            "فتح " + project.name + " في تبويب جديد"
+          );
+
+          const arrow = makeElement("span", "", "↗");
+          arrow.setAttribute("aria-hidden", "true");
+          link.append(arrow);
+          card.append(link);
+        } else {
+          card.append(
+            makeElement(
+              "span",
+              "unavailable",
+              "الرابط غير متوفر حاليًا"
+            )
+          );
+        }
+
+        $("projects").append(card);
+      });
+    }
+
+    $("login-form").addEventListener("submit", event => {
+      event.preventDefault();
+
+      if ($("code").value.trim() !== ACCESS_CODE) {
+        $("login-error").textContent =
+          "الرمز غير صحيح. حاول مرة أخرى.";
+        $("code").focus();
+        return;
+      }
+
+      $("login-error").textContent = "";
+      $("code").value = "";
+      $("gate").hidden = true;
+      $("dashboard").hidden = false;
+      $("logout").focus();
+      window.scrollTo(0, 0);
+    });
+
+    function toggleAdd(open) {
+      $("add-form").hidden = !open;
+      $("show-add").setAttribute("aria-expanded", String(open));
+      $("add-error").textContent = "";
+
+      if (open) $("project-name").focus();
+    }
+
+    $("logout").addEventListener("click", () => {
+      $("dashboard").hidden = true;
+      $("gate").hidden = false;
+      $("code").value = "";
+      $("add-form").reset();
+      toggleAdd(false);
+      $("status").textContent = "";
+      $("code").focus();
+      window.scrollTo(0, 0);
+    });
+
+    $("show-add").addEventListener("click", () => {
+      toggleAdd($("add-form").hidden);
+    });
+
+    $("cancel-add").addEventListener("click", () => {
+      toggleAdd(false);
+      $("show-add").focus();
+    });
+
+    $("add-form").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const name = $("project-name").value.trim();
+      const rawUrl = $("project-url").value.trim();
+      const url = rawUrl ? safeUrl(rawUrl) : "";
+
+      if (!name || (rawUrl && !url)) {
+        $("add-error").textContent =
+          "أدخل اسمًا ورابطًا يبدأ بـ https:// أو http://، " +
+          "أو اترك الرابط فارغًا.";
+        return;
+      }
+
+      additions.push({
+        name,
+        description: $("project-description").value.trim(),
+        url,
+        icon: "◇"
+      });
+
+      let saved = true;
+
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(additions)
+        );
+      } catch {
+        saved = false;
+      }
+
+      renderProjects();
+      $("add-form").reset();
+      toggleAdd(false);
+
+      $("status").textContent = saved
+        ? "تمت إضافة المشروع وحفظه في هذا المتصفح."
+        : "تمت الإضافة لهذه الجلسة فقط؛ تعذر الحفظ في المتصفح.";
+
+      $("show-add").focus();
+    });
+
+    renderProjects();
+  </script>
+</body>
+</html>
